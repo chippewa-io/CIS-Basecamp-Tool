@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<package>
+    <id>26</id>
+    <name>CIS_v1.0.sh.pkg</name>
+    <category>No category assigned</category>
+    <filename>CIS_v1.0.sh.pkg</filename>
+    <info></info>
+    <notes></notes>
+    <priority>10</priority>
+    <reboot_required>false</reboot_required>
+    <fill_user_template>false</fill_user_template>
+    <fill_existing_users>false</fill_existing_users>
+    <allow_uninstalled>false</allow_uninstalled>
+    <os_requirements></os_requirements>
+    <required_processor>None</required_processor>
+    <hash_type>MD5</hash_type>
+    <hash_value>01d5ad67b6f2ac378941fb0d42411b84</hash_value>
+    <switch_with_package>Do Not Install</switch_with_package>
+    <install_if_reported_available>false</install_if_reported_available>
+    <reinstall_option>Do Not Reinstall</reinstall_option>
+    <triggering_files></triggering_files>
+    <send_notification>false</send_notification>
+</package>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<script>
+    <id>5</id>
+    <name>CIS Daily Audit</name>
+    <category>No category assigned</category>
+    <filename>CIS Daily Audit</filename>
+    <info></info>
+    <notes></notes>
+    <priority>After</priority>
+    <parameters>
+        <parameter4>X Days of logs to keep</parameter4>
+    </parameters>
+    <os_requirements></os_requirements>
+    <script_contents>#!/bin/sh
+###############################################################################
+#                                                                             
+# -                                       
+#                                                                             
+# Copyright (C) Thursday, March 2, 2023, Chippewa Limited Liability Co.       
+#                                                                             
+# This script is the property of Chippewa Limited Liability Co. and is intended for internal
+# use only. This script may not be distributed, reproduced, or used in any    
+# manner without the expressed written consent of Chippewa Limited Liability Co..
+#                                                                             
+# This script is provided "AS IS" and WITHOUT WARRANTY OF ANY KIND,           
+# EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED     
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.         
+#                                                                             
+#                                                                             
+###############################################################################
+#Pruning#######################################################################
+###############################################################################
+# Set the directory where you've stored the audit files
+dir="/Library/Application Support/Security Audit/"
+
+# Get the number of days from the command line argument, or default to 365
+days=${1:-365}
+
+# Calculate the threshold time in seconds
+threshold=$(date -v-${days}d +%s)
+
+# Loop through all .csv files in the directory
+for file in "$dir"/*.csv; do
+    # Get the file's modification time in seconds since Unix epoch
+    modtime=$(stat -f "%m" "$file")
+
+    # If the file is older than the threshold, delete it
+    if [[ $modtime -lt $threshold ]]; then
+        rm "$file"
+        echo "Deleted $file"
+    fi
+done
+
+# Print a message when the script is done
+echo "Completed log pruning"
+###############################################################################
+#Audit the computer############################################################
+###############################################################################
+#Script Location
+auditScript="/Library/Application Support/Security Audit/CIS_Audit_v1.17.sh"
+#Ensure our script has not been tampered with
+expected_md5="cf21e20a78fab59f91a4198b36d4d93c" #This will need to be updated with each iteration of the script
+actual_md5=$(md5 -q "$auditScript")
+
+if [[ "$actual_md5" == "$expected_md5" ]]; then
+	echo "Script is authentic and has not been tampered with"
+else
+	echo "Audit Script has been tampered with!"
+	exit 1
+fi
+#Execute the audit script
+sudo sh "$auditScript"
+
+if [  $? == 0 ]; then
+	echo "Audit complete!"
+else
+	echo "Audit failed to execute successfully!"
+fi</script_contents>
+    <script_contents_encoded>IyEvYmluL3NoCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKIyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiMgLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAojICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKIyBDb3B5cmlnaHQgKEMpIFRodXJzZGF5LCBNYXJjaCAyLCAyMDIzLCBDaGlwcGV3YSBMaW1pdGVkIExpYWJpbGl0eSBDby4gICAgICAgCiMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAojIFRoaXMgc2NyaXB0IGlzIHRoZSBwcm9wZXJ0eSBvZiBDaGlwcGV3YSBMaW1pdGVkIExpYWJpbGl0eSBDby4gYW5kIGlzIGludGVuZGVkIGZvciBpbnRlcm5hbAojIHVzZSBvbmx5LiBUaGlzIHNjcmlwdCBtYXkgbm90IGJlIGRpc3RyaWJ1dGVkLCByZXByb2R1Y2VkLCBvciB1c2VkIGluIGFueSAgICAKIyBtYW5uZXIgd2l0aG91dCB0aGUgZXhwcmVzc2VkIHdyaXR0ZW4gY29uc2VudCBvZiBDaGlwcGV3YSBMaW1pdGVkIExpYWJpbGl0eSBDby4uCiMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAojIFRoaXMgc2NyaXB0IGlzIHByb3ZpZGVkICJBUyBJUyIgYW5kIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJTkQsICAgICAgICAgICAKIyBFSVRIRVIgRVhQUkVTU0VEIE9SIElNUExJRUQsIElOQ0xVRElORywgQlVUIE5PVCBMSU1JVEVEIFRPLCBUSEUgSU1QTElFRCAgICAgCiMgV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFkgQU5EIEZJVE5FU1MgRk9SIEEgUEFSVElDVUxBUiBQVVJQT1NFLiAgICAgICAgIAojICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKIyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKI1BydW5pbmcjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiMgU2V0IHRoZSBkaXJlY3Rvcnkgd2hlcmUgeW91J3ZlIHN0b3JlZCB0aGUgYXVkaXQgZmlsZXMKZGlyPSIvTGlicmFyeS9BcHBsaWNhdGlvbiBTdXBwb3J0L1NlY3VyaXR5IEF1ZGl0LyIKCiMgR2V0IHRoZSBudW1iZXIgb2YgZGF5cyBmcm9tIHRoZSBjb21tYW5kIGxpbmUgYXJndW1lbnQsIG9yIGRlZmF1bHQgdG8gMzY1CmRheXM9JHsxOi0zNjV9CgojIENhbGN1bGF0ZSB0aGUgdGhyZXNob2xkIHRpbWUgaW4gc2Vjb25kcwp0aHJlc2hvbGQ9JChkYXRlIC12LSR7ZGF5c31kICslcykKCiMgTG9vcCB0aHJvdWdoIGFsbCAuY3N2IGZpbGVzIGluIHRoZSBkaXJlY3RvcnkKZm9yIGZpbGUgaW4gIiRkaXIiLyouY3N2OyBkbwogICAgIyBHZXQgdGhlIGZpbGUncyBtb2RpZmljYXRpb24gdGltZSBpbiBzZWNvbmRzIHNpbmNlIFVuaXggZXBvY2gKICAgIG1vZHRpbWU9JChzdGF0IC1mICIlbSIgIiRmaWxlIikKCiAgICAjIElmIHRoZSBmaWxlIGlzIG9sZGVyIHRoYW4gdGhlIHRocmVzaG9sZCwgZGVsZXRlIGl0CiAgICBpZiBbWyAkbW9kdGltZSAtbHQgJHRocmVzaG9sZCBdXTsgdGhlbgogICAgICAgIHJtICIkZmlsZSIKICAgICAgICBlY2hvICJEZWxldGVkICRmaWxlIgogICAgZmkKZG9uZQoKIyBQcmludCBhIG1lc3NhZ2Ugd2hlbiB0aGUgc2NyaXB0IGlzIGRvbmUKZWNobyAiQ29tcGxldGVkIGxvZyBwcnVuaW5nIgojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiNBdWRpdCB0aGUgY29tcHV0ZXIjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwojU2NyaXB0IExvY2F0aW9uCmF1ZGl0U2NyaXB0PSIvTGlicmFyeS9BcHBsaWNhdGlvbiBTdXBwb3J0L1NlY3VyaXR5IEF1ZGl0L0NJU19BdWRpdF92MS4xNy5zaCIKI0Vuc3VyZSBvdXIgc2NyaXB0IGhhcyBub3QgYmVlbiB0YW1wZXJlZCB3aXRoCmV4cGVjdGVkX21kNT0iY2YyMWUyMGE3OGZhYjU5ZjkxYTQxOThiMzZkNGQ5M2MiICNUaGlzIHdpbGwgbmVlZCB0byBiZSB1cGRhdGVkIHdpdGggZWFjaCBpdGVyYXRpb24gb2YgdGhlIHNjcmlwdAphY3R1YWxfbWQ1PSQobWQ1IC1xICIkYXVkaXRTY3JpcHQiKQoKaWYgW1sgIiRhY3R1YWxfbWQ1IiA9PSAiJGV4cGVjdGVkX21kNSIgXV07IHRoZW4KCWVjaG8gIlNjcmlwdCBpcyBhdXRoZW50aWMgYW5kIGhhcyBub3QgYmVlbiB0YW1wZXJlZCB3aXRoIgplbHNlCgllY2hvICJBdWRpdCBTY3JpcHQgaGFzIGJlZW4gdGFtcGVyZWQgd2l0aCEiCglleGl0IDEKZmkKI0V4ZWN1dGUgdGhlIGF1ZGl0IHNjcmlwdApzdWRvIHNoICIkYXVkaXRTY3JpcHQiCgppZiBbICAkPyA9PSAwIF07IHRoZW4KCWVjaG8gIkF1ZGl0IGNvbXBsZXRlISIKZWxzZQoJZWNobyAiQXVkaXQgZmFpbGVkIHRvIGV4ZWN1dGUgc3VjY2Vzc2Z1bGx5ISIKZmk=</script_contents_encoded>
+</script>

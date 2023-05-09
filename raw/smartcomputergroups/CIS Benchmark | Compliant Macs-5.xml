@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<computer_group>
+    <id>5</id>
+    <name>CIS Benchmark | Compliant Macs</name>
+    <is_smart>true</is_smart>
+    <site>
+        <id>-1</id>
+        <name>None</name>
+    </site>
+    <criteria>
+        <size>1</size>
+        <criterion>
+            <name>CIS | Overall</name>
+            <priority>0</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>PASS</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+    </criteria>
+    <computers>
+        <size>4</size>
+        <computer>
+            <id>1</id>
+            <name>Chris’s MacBook Air</name>
+            <mac_address>50:ED:3C:1D:82:B6</mac_address>
+            <alt_mac_address>36:62:0E:EA:14:C0</alt_mac_address>
+            <serial_number>FVFF6H1DQ6L4</serial_number>
+        </computer>
+        <computer>
+            <id>2</id>
+            <name>CohoonTestBox</name>
+            <mac_address>60:03:08:A3:64:94</mac_address>
+            <alt_mac_address>82:0F:07:76:D5:40</alt_mac_address>
+            <serial_number>C02M23LMFH05</serial_number>
+        </computer>
+        <computer>
+            <id>3</id>
+            <name>VM3’s Virtual Machine</name>
+            <mac_address>DE:D7:BF:3A:64:4A</mac_address>
+            <alt_mac_address>CE:42:73:6D:08:55</alt_mac_address>
+            <serial_number>Z6GCP2DY5L</serial_number>
+        </computer>
+        <computer>
+            <id>4</id>
+            <name>vm4’s Virtual Machine</name>
+            <mac_address>3E:35:1C:29:F0:81</mac_address>
+            <alt_mac_address>FA:C4:B1:E6:A3:67</alt_mac_address>
+            <serial_number>ZCGMQTYVCK</serial_number>
+        </computer>
+    </computers>
+</computer_group>

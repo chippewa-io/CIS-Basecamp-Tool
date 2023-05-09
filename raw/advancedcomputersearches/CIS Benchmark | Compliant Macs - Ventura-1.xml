@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<advanced_computer_search>
+    <id>1</id>
+    <name>CIS Benchmark | Compliant Macs - Ventura</name>
+    <view_as>Standard Web Page</view_as>
+    <sort_1></sort_1>
+    <sort_2></sort_2>
+    <sort_3></sort_3>
+    <criteria>
+        <size>6</size>
+        <criterion>
+            <name>CIS | Overall</name>
+            <priority>0</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>PASS</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+        <criterion>
+            <name>CIS Benchmark | Applications</name>
+            <priority>1</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>PASS</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+        <criterion>
+            <name>CIS Benchmark | Logging &amp; Auditing</name>
+            <priority>2</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>PASS</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+        <criterion>
+            <name>CIS Benchmark | Network Configurations</name>
+            <priority>3</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>PASS</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+        <criterion>
+            <name>CIS Benchmark | Software Updates</name>
+            <priority>4</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>PASS</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+        <criterion>
+            <name>CIS Benchmark | System Settings</name>
+            <priority>5</priority>
+            <and_or>and</and_or>
+            <search_type>is</search_type>
+            <value>PASS</value>
+            <opening_paren>false</opening_paren>
+            <closing_paren>false</closing_paren>
+        </criterion>
+    </criteria>
+    <display_fields>
+        <size>12</size>
+        <display_field>
+            <name>Last Inventory Update</name>
+        </display_field>
+        <display_field>
+            <name>Managed</name>
+        </display_field>
+        <display_field>
+            <name>CIS Benchmark | Network Configurations</name>
+        </display_field>
+        <display_field>
+            <name>User Approved MDM</name>
+        </display_field>
+        <display_field>
+            <name>CIS Benchmark | Software Updates</name>
+        </display_field>
+        <display_field>
+            <name>CIS | Overall</name>
+        </display_field>
+        <display_field>
+            <name>CIS Benchmark | Applications</name>
+        </display_field>
+        <display_field>
+            <name>Computer Name</name>
+        </display_field>
+        <display_field>
+            <name>Last Check-in</name>
+        </display_field>
+        <display_field>
+            <name>CIS Benchmark | Logging &amp; Auditing</name>
+        </display_field>
+        <display_field>
+            <name>Supervised</name>
+        </display_field>
+        <display_field>
+            <name>CIS Benchmark | System Settings</name>
+        </display_field>
+    </display_fields>
+    <computers>
+        <size>2</size>
+        <computer>
+            <name>Chris’s MacBook Air</name>
+            <udid>93A1E4DA-2838-53F7-A962-FEA4D4F2AC0E</udid>
+            <id>1</id>
+            <Computer_Name>Chris’s MacBook Air</Computer_Name>
+            <Last_Inventory_Update>2023-04-28 14:24:41</Last_Inventory_Update>
+            <Managed>Managed</Managed>
+        </computer>
+        <computer>
+            <name>vm4’s Virtual Machine</name>
+            <udid>8B12CCD8-D9EB-5D50-A605-59E73C79AC41</udid>
+            <id>4</id>
+            <Computer_Name>vm4’s Virtual Machine</Computer_Name>
+            <Last_Inventory_Update>2023-04-21 18:57:59</Last_Inventory_Update>
+            <Managed>Managed</Managed>
+        </computer>
+    </computers>
+    <site>
+        <id>-1</id>
+        <name>None</name>
+    </site>
+</advanced_computer_search>
